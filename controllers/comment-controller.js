@@ -5,7 +5,7 @@ const commentController = {
     // add comment to pizza
     addComment({ params, body }, res) {
     console.log(body);
-    comment.create(body)
+    Comment.create(body)
       .then(({ _id }) => {
           return Pizza.findOneAndUpdate(
               { _id: params.pizzaId },
@@ -20,7 +20,7 @@ const commentController = {
           }
           res.json(dbPizzaData)
       })
-      .catah(err => res.json(err));
+      .catch(err => res.json(err));
     },
 
     // remove comment 
