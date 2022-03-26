@@ -111,6 +111,31 @@ function handleNewCommentSubmit(event) {
   }
 
   const formData = { commentBody, writtenBy };
+
+  fetch(`/api/comments/${pizzaId}`, {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(formData)
+  })  
+  .then(response => {
+  // check for 4xx or 5xx error from server
+  if(!response.ok) {
+    throw new error({ message: 'Something went wrong!' });
+  }
+  
+  response.json();
+})
+.then(commentResponse => {
+  console.log(commentResponse);
+  location.reload();
+})
+.catch(err => {
+  console.log(err);
+  
+});
 }
 
 function handleNewReplySubmit(event) {
