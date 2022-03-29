@@ -19,7 +19,7 @@ function getPizza() {
     .then(response => {
       console.log(response);
       if (!response.ok) {
-        console.log('hi');
+        
         throw new Error({ message: 'Something went wrong!' });
       }
 
