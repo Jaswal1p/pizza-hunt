@@ -6,8 +6,8 @@ const pizzaController = {
     getAllPizza(req, res) {
         Pizza.find({})
         .populate({
-            path: 'comments',
-            select: '-__v'
+          path: 'comments',
+          select: '-__v'
         })
         .select('-__v')
         .sort({ _id: -1 })
@@ -22,8 +22,8 @@ const pizzaController = {
     getPizzaById({ params }, res) {
         Pizza.findOne({ _id: params.id })
         .populate({
-            path: 'comments',
-            select: '-__v'
+          path: 'comments',
+          select: '-__v'
         })
         .select('-__v')
         .then(dbPizzaData => {
@@ -41,8 +41,7 @@ const pizzaController = {
     },
 
     // createPizza
-    createPizza({ body }, res) { 
-        console.log(body);    
+    createPizza({ body }, res) {
         Pizza.create(body)
         .then(dbPizzaData => res.json(dbPizzaData))
         .catch(err => res.status(400).json(err));
